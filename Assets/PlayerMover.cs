@@ -10,6 +10,12 @@ public class PlayerMover : MonoBehaviour
     [SerializeField] private float leftBorder;
     [SerializeField] private float rightBorder;
 
+    private float distance = 60;
+
+
+    [SerializeField] private float spawnDist = 120;
+    [SerializeField] private GameObject road;
+
     void Update()
     {
         float zDelta = transform.position.z + (speed * Time.deltaTime);
@@ -26,9 +32,12 @@ public class PlayerMover : MonoBehaviour
         {
             xDelta = rightBorder;
         }
-        else
-        {
-            Debug.Log("Ничего");
+
+        if (zDelta > distance) {
+            distance += 60;
+            Instantiate(road, 
+                new Vector3(0, 0, distance + spawnDist), 
+                Quaternion.identity);
         }
 
         transform.position = new Vector3(xDelta, transform.position.y, zDelta);
