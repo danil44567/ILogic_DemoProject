@@ -40,6 +40,8 @@ public class PlayerMover : MonoBehaviour
                 Quaternion.identity);
         }
 
+        Debug.Log("Test");
+
         transform.position = new Vector3(xDelta, transform.position.y, zDelta);
     }
 }
